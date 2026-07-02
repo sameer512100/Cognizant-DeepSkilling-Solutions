@@ -1,0 +1,57 @@
+Scenario 1: Apply 1% Discount to Loan Interest Rates
+
+BEGIN
+    FOR c IN (
+        SELECT CustomerID, Age
+        FROM Customers
+    ) LOOP
+        IF c.Age > 60 THEN
+            UPDATE Loans
+            SET InterestRate = InterestRate - 1
+            WHERE CustomerID = c.CustomerID;
+        END IF;
+    END LOOP;
+
+    COMMIT;
+END;
+/
+
+
+Scenario 2: Promote Customers to VIP Status
+
+BEGIN
+    FOR c IN (
+        SELECT CustomerID, Balance
+        FROM Customers
+    ) LOOP
+        IF c.Balance > 10000 THEN
+            UPDATE Customers
+            SET IsVIP = 'TRUE'
+            WHERE CustomerID = c.CustomerID;
+        END IF;
+    END LOOP;
+
+    COMMIT;
+END;
+/
+
+
+Scenario 3: Send Loan Due Reminders
+
+
+SET SERVEROUTPUT ON;
+
+BEGIN
+    FOR l IN (
+        SELECT CustomerID, LoanID, DueDate
+        FROM Loans
+        WHERE DueDate BETWEEN SYSDATE AND SYSDATE + 30
+    ) LOOP
+        DBMS_OUTPUT.PUT_LINE(
+            'Reminder: Customer ' || l.CustomerID ||
+            ' has Loan ' || l.LoanID ||
+            ' due on ' || TO_CHAR(l.DueDate, 'DD-MON-YYYY')
+        );
+    END LOOP;
+END;
+/
