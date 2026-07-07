@@ -1,0 +1,7 @@
+<!-- Add this inside the <dependencies> section of your pom.xml -->
+<dependency>
+    <groupId>junit</groupId>
+    <artifactId>junit</artifactId>
+    <version>4.13.2</version>
+    <scope>test</scope>
+</dependency>

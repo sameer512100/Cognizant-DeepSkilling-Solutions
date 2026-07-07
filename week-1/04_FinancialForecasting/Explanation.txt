@@ -1,0 +1,43 @@
+Exercise: Financial Forecasting with Recursion
+================================================
+
+1. What is Recursion?
+----------------------
+Recursion is when a method calls itself to solve a smaller version of the
+same problem. Every recursive method needs:
+- A base case: a condition where the method stops calling itself.
+- A recursive case: where the method calls itself with a simpler/smaller
+  input, moving closer to the base case.
+
+Recursion simplifies problems that are naturally repetitive or built on
+smaller versions of themselves, like calculating compound growth year
+by year, without writing an explicit loop.
+
+2. How It Applies Here
+------------------------
+To forecast a future value, we don't need to know the answer for "years"
+directly. We can instead compute the value after 1 year of growth, and
+then ask the same question again for "years - 1". This continues until
+"years" reaches 0 (the base case), at which point we simply return the
+accumulated value.
+
+3. Time Complexity
+--------------------
+The recursive method makes exactly one recursive call per year, so the
+time complexity is O(n), where n is the number of years being forecast.
+Each call does a constant amount of work (one multiplication).
+
+4. Optimizing the Recursive Solution
+--------------------------------------
+- Tail Recursion: The current implementation is already tail-recursive
+  (the recursive call is the last operation), which some compilers/JVMs
+  can optimize, though Java does not guarantee tail-call optimization.
+- Iterative Conversion: For very large numbers of years, an iterative
+  (loop-based) version avoids the risk of a StackOverflowError, since
+  each recursive call uses stack space.
+- Direct Formula: Since this is compound growth, it can also be
+  calculated directly using the formula:
+      futureValue = currentValue * (1 + growthRate)^years
+  This avoids recursion/loops entirely and runs in O(1) time using
+  Math.pow(), which is the most efficient option for simple compound
+  growth.

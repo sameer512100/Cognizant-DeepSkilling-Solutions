@@ -1,0 +1,39 @@
+Exercise: E-commerce Platform Search Function
+==============================================
+
+1. Big O Notation
+------------------
+Big O notation describes how the running time (or memory use) of an
+algorithm grows as the input size (n) grows. It focuses on the worst-case
+growth rate and ignores constants, so we can compare algorithms
+independently of hardware or small implementation details.
+
+Best, Average, and Worst Case for Search:
+- Best case: the target element is found immediately (e.g., first element
+  checked). For linear search this is O(1). For binary search this is O(1)
+  if the target is the middle element.
+- Average case: the target is found somewhere in the middle of the data.
+  Linear search averages O(n/2) which simplifies to O(n). Binary search
+  averages O(log n).
+- Worst case: the target is not present, or is the last element checked.
+  Linear search is O(n). Binary search is O(log n).
+
+2. Time Complexity Comparison
+------------------------------
+- Linear Search: O(n) in the average and worst case. Works on unsorted
+  data, no extra setup needed.
+- Binary Search: O(log n) in the average and worst case. Requires the
+  data to be sorted first (sorting itself costs O(n log n) if not already
+  sorted).
+
+3. Which Algorithm Is More Suitable?
+-------------------------------------
+For an e-commerce platform with a large product catalog that doesn't
+change every second, binary search is much more suitable because:
+- Product catalogs can be sorted once (e.g., by productId or name) and
+  searched many times, so the one-time sorting cost pays off quickly.
+- O(log n) scales far better than O(n) as the catalog grows into the
+  thousands or millions of products.
+
+Linear search is only preferable for very small, frequently-changing, or
+unsorted lists where sorting overhead isn't worth it.
