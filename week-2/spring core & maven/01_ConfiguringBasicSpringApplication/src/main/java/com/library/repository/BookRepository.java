@@ -1,0 +1,12 @@
+package com.library.repository;
+
+public class BookRepository {
+
+    public void save(String bookTitle) {
+        System.out.println("Book saved to repository: " + bookTitle);
+    }
+
+    public String findBook(String bookTitle) {
+        return "Found book: " + bookTitle;
+    }
+}
